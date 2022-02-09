@@ -8,6 +8,7 @@ This is simple vanilla javascript and local storage application. In this project
 - Simple Banking Calculation 
 - Delete all Estimate Option
 - Real time working
+- JavaScript Modal System
 - All data comes from Browser LocalStorage.
 
 ## Using Technologies
