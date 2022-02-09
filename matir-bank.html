@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Matir Bank </title>
+    <!-- link for favicon  -->
+    <link rel="shortcut icon" href="./favicon.png" type="image/x-icon">
+    <!-- link for css -->
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body id="dashboard-body">
+    <div class="dashboard-wrapper">
+        <div class="container">
+            <div class="dashboard-header">
+                <div class="header-text">
+                    <h1>Matir bank.</h1>
+                    <p class="users">Welcome <strong id="username">ashik@gmail.com</strong> in <span
+                            class="colorize">Matir Bank</span></p>
+                </div>
+                <div class="btns">
+                    <a href="javascript:void(0)" class="clear-estimate-btn">Clear Estimate</a>
+                    <a href="index.html" class="logout-btn">Log Out</a>
+                </div>
+            </div>
+            <div class="dashboard-body">
+                <div class="overview">
+                    <div class="card">
+                        <h4>Deposit Balance</h4>
+                        $<span class="money" id="deposit-money"> 000</span>
+                    </div>
+                    <div class="card">
+                        <h4>Withdraw Balance</h4>
+                        $<span class="money" id="withdraw-money"> 000</span>
+                    </div>
+                    <div class="card">
+                        <h4>Total Balance</h4>
+                        $<span class="money" id="total-money">000</span>
+                    </div>
+                </div>
+                <div class="buttons-group">
+                    <button id="deposit">Deposit Balance</button>
+                    <button id="withdraw">Withdraw Balance</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- modal for deposit money  -->
+    <div class="modal" id="deposit-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Deposit Balance</h2>
+                <span class="close-btn">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="deposit-form">
+                    <label for="deposit-field">Deposit</label>
+                    <input type="number" placeholder="$" id="deposit-field">
+                    <button id="dep-btn">Request for Deposit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- modal for withdraw money  -->
+    <div class="modal" id="withdraw-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Withdraw Balance</h2>
+                <span class="close-btn">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="deposit-form">
+                    <label for="withdraw-field">Withdraw Balance</label>
+                    <input type="number" placeholder="$" id="withdraw-field">
+                    <button id="with-btn">Request for Withdraw</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- script for this page  -->
+    <script src="./js/modal.js"></script>
+    <script src="./js/dashboard.js"></script>
+
+</body>
+
+</html>

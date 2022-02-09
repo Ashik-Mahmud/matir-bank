@@ -1,0 +1,308 @@
+/*==============
+Main Style Sheet  
+================*/
+
+/* base css  */
+*,
+*::after,
+*::before {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: montserrat;
+    font-size: 16px;
+}
+:root{
+    --gradient:linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%);
+}
+/* common classes  */
+.container {
+    max-width: 1170px;
+    margin: auto;
+}
+
+.colorize{
+    color: #00d4ff;
+}
+.toast{
+    position: fixed;
+    z-index: 1;
+    right: 5%;
+    top: -20%;
+    background-color: #fff;
+    border-left: 5px solid rgb(224, 26, 26);
+    padding: 1rem;
+    transition: all 0.5s ease-in;
+    
+}
+.toast.show{
+    top: 5%;
+}
+.disabled{
+    opacity: .7;
+    pointer-events: none;
+}
+.clear-estimate-btn{
+    text-decoration: none;
+    display: inline-block;
+    color: #fff;
+    background: #e74c3c;
+    padding: .5rem;
+    border-radius: 4px;
+    margin-right: 1rem;
+}
+/* css style for login page  */
+#login-body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: rgb(2, 0, 36);
+    background: #f1f1f1;
+    box-shadow: 0px 0px 15px rgba(1, 34, 53, 0.363);
+}
+
+.login-wrapper{
+    background-color: #fff;
+    padding: 1rem 2rem;
+    width: 500px;
+    position: relative;
+}
+
+.login-inner{
+    position: relative;
+}
+.login-inner h1{
+    margin: 1rem 0rem;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+.form-inner{
+    margin-top: 2rem;
+}
+.field{
+    margin-bottom: 1rem;
+}
+.field label{
+    display: block;
+    margin-bottom: .4rem;
+}
+.field input{
+    width: 100%;
+    padding: .7rem;
+    border-radius: 3px;
+    font-family: poppins;
+    border: 1px solid #ccc;
+    outline: none;
+    font-size: 1rem;
+}
+.field:nth-child(3){
+    display: flex;
+    align-items: center;
+}
+.field:nth-child(3) input{
+    width: auto;
+    margin-right: 1rem;
+    width: 20px;
+    height: 20px;
+}
+#login-button{
+    padding: 1rem;
+    border: none;
+    margin-top: 1rem;
+    cursor: pointer;
+    font-family: poppins;
+    font-size: 1rem;
+    background: var(--gradient);
+    color: #fff;
+    border-radius: 3px;
+}
+
+
+
+
+/* style for matir bank dashboard  */
+#dashboard-body{
+    background: #f1f1f1;
+    
+    
+}
+.dashboard-wrapper{
+    padding: 1rem;
+    position: relative;
+}
+.dashboard-wrapper .container{
+    background-color: #fff;
+    padding: 0rem;
+}
+.dashboard-wrapper .dashboard-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem ;
+    border-bottom: 1px solid #ccc;
+}
+
+.dashboard-body{
+    padding: 2rem;
+    position: relative;
+}
+.dashboard-body .overview{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    position: relative;
+    grid-gap: 1rem;
+}
+.overview .card{
+    background:#60A5FA;
+    padding: 2rem;
+    color: #fff;
+}
+.overview .card:nth-child(2){
+    background: #86EFAC;
+}
+.overview .card:last-child{
+    background: #00d4ff;
+}
+
+.card .money{
+    font-size: 2.2rem;
+    font-weight: 500;
+}
+
+.buttons-group{
+    margin-top: 1rem;
+    text-align: right;
+    position: relative;
+}
+.buttons-group button{
+    padding: .6rem;
+    font-size: 1rem;
+    font-family: poppins;
+    cursor: pointer;
+    background-color: #02d14e;
+    color: #fff;
+    border: none;
+    outline: none;
+    border-radius: 4px;
+}
+.buttons-group #withdraw{
+    background-color: #e74c3c;
+}
+.logout-btn{
+    text-decoration: none;
+    color: #e74c3c;
+}
+
+/* modal css  */
+.modal{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(1, 34, 53, 0.363);
+    z-index: 1;
+    left: 0%;
+    top: 0%;
+    backdrop-filter: blur(5px);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.2s ease-in;
+}
+.modal.active-modal{
+    opacity: 1;
+    pointer-events: all;
+}
+.modal-content{
+    width: 400px;
+    position: relative;
+    background: #fff;
+    transform: translateY(-50px);
+    opacity: 0;
+    transition: all 0.5s ease;
+}
+.modal.modal.active-modal .modal-content{
+    transform: translateY(0px);
+    opacity: 1;
+}
+.modal-content .modal-header{
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.modal-header .close-btn{
+    cursor: pointer;
+    font-size: 1.6rem;
+}
+.modal-content .modal-body{
+    padding: 1.4rem;
+    position: relative;
+}
+.modal-body .deposit-form{
+    position: relative;
+}
+.deposit-form label{
+    display: block;
+}
+.deposit-form input{
+    width: 100%;
+    padding: 1rem;
+    font-size: 1rem;
+    font-family: montserrat;
+    margin-top: .3rem;
+    border: 1px solid #ccc;
+    outline: none;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+.deposit-form button{
+    padding: .7rem 1rem;
+    border: none;
+    font-size: 1rem;
+    background: #02d14e;
+    color: #fff;
+    cursor: pointer;
+    font-family: montserrat;
+}
+#deposit-modal .modal-header,
+#deposit-modal .deposit-form button{
+    background: #02d14e;
+    color: #fff;
+}
+
+#withdraw-modal .modal-header,
+#withdraw-modal .deposit-form button{
+    background: #e74c3c;
+    color: #fff;
+}
+
+/* some responsive style  */
+@media (max-width: 900px) {
+    .container{
+        max-width: 100%;
+        margin: 1rem;
+    }
+}
+
+@media (max-width: 500px) {
+    .login-wrapper{
+        width: 100%;
+        margin: 1rem;
+    }
+    .toast{
+        top: 2%;
+    }
+    .dashboard-body .overview{
+        grid-template-columns: 1fr;
+    }
+    .logout-btn{
+        display: none;
+    }
+}
