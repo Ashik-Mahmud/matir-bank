@@ -178,6 +178,7 @@ body {
     margin-top: 1rem;
     text-align: right;
     position: relative;
+    
 }
 .buttons-group button{
     padding: .6rem;
@@ -302,7 +303,22 @@ body {
     .dashboard-body .overview{
         grid-template-columns: 1fr;
     }
-    .logout-btn{
-        display: none;
+    .dashboard-wrapper .dashboard-header{
+        flex-direction: column;
+        gap: 2rem;
+    }
+    .dashboard-wrapper{
+        padding: .3rem;
+    }
+    .dashboard-body{
+        padding: .5rem;
+    }
+    .buttons-group button{
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+    .modal-content{
+        width: 100%;
+        margin: 1rem;
     }
 }

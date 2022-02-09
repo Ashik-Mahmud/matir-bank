@@ -85,8 +85,11 @@ if (!getUsername) {
         let total = Number(totalMoney.innerText);
         if (total <= 0) {
             document.querySelector('#withdraw').classList.add("disabled");
+            document.querySelector('.clear-estimate-btn').classList.add('disabled')
         } else {
             document.querySelector('#withdraw').classList.remove("disabled");
+            document.querySelector('.clear-estimate-btn').classList.remove('disabled')
+
         }
     };
     isTotalMoney();
@@ -102,4 +105,5 @@ if (!getUsername) {
         }
     }
     document.querySelector('.clear-estimate-btn').addEventListener('click', clearAllEstimate);
+    
 }
