@@ -9,12 +9,12 @@ const formInner = document.querySelector(".form-inner"),
     passwordInput = formInner.querySelector("[type='password']"),
     errorWrapper = document.querySelector(".toast");
 
-function isCredentialTrue() {
-
+function isCredentialTrue(event) {
+    event.preventDefault();
     if (emailInput.value === '' || passwordInput.value === '') {
         errorWrapper.querySelector('span').innerText = 'All fields are required.';
         isError()
-    } else if (emailInput.value === 'ashik@gmail.com' && passwordInput.value === 'ashik###') {
+    } else if (emailInput.value === 'ashik@gmail.com' && passwordInput.value === 'babarBank###') {
         location.href = 'matir-bank.html';
         let setUsername = localStorage.setItem('username', emailInput.value);
     } else {

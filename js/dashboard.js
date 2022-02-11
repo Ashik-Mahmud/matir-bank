@@ -3,34 +3,23 @@ let getUsername = localStorage.getItem('username');
 if (!getUsername) {
     location.href = 'index.html';
 } else {
-
     const depositMoney = document.getElementById("deposit-money");
     const withdrawMoney = document.getElementById("withdraw-money");
     const totalMoney = document.getElementById("total-money");
 
     /*  1. showing email address in the dashboard  */
-    const username = document.querySelector('#username').innerText = getUsername;
+    document.querySelector('#username').innerText = getUsername;
 
     /*  2. Deposit balance inside our bank  */
     const depositField = document.getElementById("deposit-field");
     const depositBtn = depositField.nextElementSibling;
-
     function depositBalance() {
         let value = Number(depositField.value);
         if (value <= 0) {
             alert("Please input positive value & Empty field not allowed")
         } else {
-            // set & get deposit money in localStorage 
-            localStorage.setItem('deposit-money', Number(depositMoney.innerText) + Number(value))
-            let getDepositMoney = localStorage.getItem('deposit-money');
-            depositMoney.innerText = getDepositMoney;
-
-            // set & get total totalBalance in localStorage 
-            let totalBalance = getDepositMoney - Number(withdrawMoney.innerText);
-            totalMoney.innerText = totalBalance;
-            depositField.value = '';
-            modalForDeposit.classList.remove('active-modal');
-            isTotalMoney();
+            bankUpdateBalance('deposit-money', value, false);
+            depositField.value = ''
         }
     };
     depositBtn.addEventListener('click', depositBalance);
@@ -47,22 +36,12 @@ if (!getUsername) {
             if (value > Number(totalMoney.innerText)) {
                 alert("Now Your balance is - " + totalMoney.innerText + ' You need to withdraw into of your total balance');
             } else {
-                localStorage.setItem('withdraw-money', Number(withdrawMoney.innerText) + Number(value))
-                let getWithdrawMoney = localStorage.getItem('withdraw-money');
-                withdrawMoney.innerText = Number(getWithdrawMoney);
-                let totalBalance = Number(depositMoney.innerText) - Number(withdrawMoney.innerText);
-                totalMoney.innerText = totalBalance;
-                modalForWithdraw.classList.remove('active-modal');
-                withdrawField.value = '';
-                isTotalMoney()
-
+                bankUpdateBalance('withdraw-money', value, true);
+                withdrawField.value = ''
             }
         }
-
     };
-
     withdrawBtn.addEventListener('click', withdrawBalance);
-
 
     // get by default value in the local
     function showDefaultValueIntoLocalStorage() {
@@ -78,19 +57,13 @@ if (!getUsername) {
 
     }
     showDefaultValueIntoLocalStorage();
-
-    /* 4. check if not have total balance then disabled withdraw button  */
-
+    /* 4. check if not have total balance then disabled withdraw button and clear all estimate button as well  */
     function isTotalMoney() {
         let total = Number(totalMoney.innerText);
-        if (total <= 0) {
-            document.querySelector('#withdraw').classList.add("disabled");
-            document.querySelector('.clear-estimate-btn').classList.add('disabled')
-        } else {
-            document.querySelector('#withdraw').classList.remove("disabled");
-            document.querySelector('.clear-estimate-btn').classList.remove('disabled')
-
-        }
+        let depositTotal = Number(depositMoney.innerText);
+        let withdrawTotal = Number(withdrawMoney.innerText);
+        total <= 0 ? document.querySelector('#withdraw').classList.add("disabled") : document.querySelector('#withdraw').classList.remove("disabled");
+        withdrawTotal <= 0 && depositTotal <= 0 ? document.querySelector('.clear-estimate-btn').classList.add('disabled') : document.querySelector('.clear-estimate-btn').classList.remove('disabled')
     };
     isTotalMoney();
     /* 5. Clear Estimate Button  */
@@ -105,5 +78,24 @@ if (!getUsername) {
         }
     }
     document.querySelector('.clear-estimate-btn').addEventListener('click', clearAllEstimate);
-    
+}
+/* function for depositBalance & withdrawBalance */
+function bankUpdateBalance(insertedId, value, isTrue) {
+    const insertMoney = document.getElementById(insertedId);
+    const totalMoney = document.getElementById("total-money");
+    let totalBalance;
+    // set & get deposit money in localStorage 
+    localStorage.setItem(insertedId, Number(insertMoney.innerText) + Number(value))
+    let getInsertMoney = localStorage.getItem(insertedId);
+    insertMoney.innerText = getInsertMoney;
+    // set & get total totalBalance in localStorage 
+    totalBalance = getInsertMoney - Number(localStorage.getItem('withdraw-money'));
+    if (isTrue === false) {
+        document.querySelector('#deposit-modal').classList.remove('active-modal');
+    } else {
+        totalBalance = Number(localStorage.getItem('deposit-money')) - insertMoney.innerText;;
+        document.querySelector('#withdraw-modal').classList.remove('active-modal');
+    }
+    totalMoney.innerText = totalBalance;
+    isTotalMoney();
 }

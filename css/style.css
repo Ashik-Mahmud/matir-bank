@@ -31,7 +31,7 @@ body {
     position: fixed;
     z-index: 1;
     right: 5%;
-    top: -20%;
+    top: -100%;
     background-color: #fff;
     border-left: 5px solid rgb(224, 26, 26);
     padding: 1rem;
@@ -39,7 +39,7 @@ body {
     
 }
 .toast.show{
-    top: 5%;
+    top: 2%;
 }
 .disabled{
     opacity: .7;
@@ -178,7 +178,6 @@ body {
     margin-top: 1rem;
     text-align: right;
     position: relative;
-    
 }
 .buttons-group button{
     padding: .6rem;
@@ -298,27 +297,12 @@ body {
         margin: 1rem;
     }
     .toast{
-        top: 2%;
+        top: -100%;
     }
     .dashboard-body .overview{
         grid-template-columns: 1fr;
     }
-    .dashboard-wrapper .dashboard-header{
-        flex-direction: column;
-        gap: 2rem;
-    }
-    .dashboard-wrapper{
-        padding: .3rem;
-    }
-    .dashboard-body{
-        padding: .5rem;
-    }
-    .buttons-group button{
-        width: 100%;
-        margin-bottom: 1rem;
-    }
-    .modal-content{
-        width: 100%;
-        margin: 1rem;
+    .logout-btn{
+        display: none;
     }
 }

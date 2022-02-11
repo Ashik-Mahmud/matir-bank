@@ -2,32 +2,26 @@
 
 /* $. work for open modal  */
 const depositButton = document.getElementById("deposit"),
-    withdrawButton = document.getElementById("withdraw"),
-    closeBtn = document.querySelector(".close-btn"),
-    modalForDeposit = document.getElementById('deposit-modal'),
-    modalForWithdraw = document.getElementById('withdraw-modal');
-
+    withdrawButton = document.getElementById("withdraw");
 // modal for deposit 
 depositButton.addEventListener('click', function () {
-    modalForDeposit.classList.add('active-modal');
-    modalForDeposit.querySelector('.close-btn').addEventListener('click', function () {
-        modalForDeposit.classList.remove('active-modal');
-    })
+    toggleModal('deposit-modal')
 })
-
 // modal for withdraw 
 withdrawButton.addEventListener('click', function () {
-    modalForWithdraw.classList.add('active-modal');
-    modalForWithdraw.querySelector('.close-btn').addEventListener('click', function () {
-        modalForWithdraw.classList.remove('active-modal');
-    })
+    toggleModal('withdraw-modal')
 })
-
-
+// work for modal function 
+function toggleModal(modalId) {
+    modalWrapper = document.getElementById(modalId);
+    modalWrapper.classList.add('active-modal');
+    modalWrapper.querySelector('.close-btn').addEventListener('click', function () {
+        modalWrapper.classList.remove('active-modal');
+    })
+}
 // work with logout 
-
-document.querySelector(".logout-btn").addEventListener("click",function(){
-    if(confirm("Do you want to log out?")){
+document.querySelector(".logout-btn").addEventListener("click", function () {
+    if (confirm("Do you want to log out?")) {
         localStorage.removeItem('username');
     }
 })
