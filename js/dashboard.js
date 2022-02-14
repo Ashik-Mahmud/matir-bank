@@ -13,6 +13,7 @@ if (!getUsername) {
     /*  2. Deposit balance inside our bank  */
     const depositField = document.getElementById("deposit-field");
     const depositBtn = depositField.nextElementSibling;
+
     function depositBalance() {
         let value = Number(depositField.value);
         if (value <= 0) {
@@ -37,7 +38,9 @@ if (!getUsername) {
                 alert("Now Your balance is - " + totalMoney.innerText + ' You need to withdraw into of your total balance');
             } else {
                 bankUpdateBalance('withdraw-money', value, true);
-                withdrawField.value = ''
+                withdrawField.value = '';
+                withdrawMoneyIntoLocalStorage(value);
+
             }
         }
     };
@@ -63,8 +66,21 @@ if (!getUsername) {
         let depositTotal = Number(depositMoney.innerText);
         let withdrawTotal = Number(withdrawMoney.innerText);
         total <= 0 ? document.querySelector('#withdraw').classList.add("disabled") : document.querySelector('#withdraw').classList.remove("disabled");
-        withdrawTotal <= 0 && depositTotal <= 0 ? document.querySelector('.clear-estimate-btn').classList.add('disabled') : document.querySelector('.clear-estimate-btn').classList.remove('disabled')
+
+        if (withdrawTotal <= 0 && depositTotal <= 0) {
+            document.querySelector('.clear-estimate-btn').classList.add('disabled'),
+                document.querySelector('.transaction-btn').classList.add('disabled');
+        } else {
+            document.querySelector('.clear-estimate-btn').classList.remove('disabled');
+            document.querySelector('.transaction-btn').classList.remove('disabled');
+
+        }
+
+
+
+
     };
+
     isTotalMoney();
     /* 5. Clear Estimate Button  */
     function clearAllEstimate() {
@@ -74,6 +90,7 @@ if (!getUsername) {
             document.getElementById("deposit-money").innerText = '000';
             document.getElementById("withdraw-money").innerText = '000';
             document.getElementById("total-money").innerText = '000';
+            transactionArea.classList.remove('active')
             isTotalMoney();
         }
     }
@@ -99,3 +116,77 @@ function bankUpdateBalance(insertedId, value, isTrue) {
     totalMoney.innerText = totalBalance;
     isTotalMoney();
 }
+
+/*==========================================
+Work with transaction button and area as well  
+==============================================*/
+
+const transactionBtn = document.querySelector(".transaction-btn");
+const transactionArea = document.querySelector(".transaction");
+const transactionClearBtn = document.querySelector(".clear-transaction-btn");
+
+/* 1.show transaction area when users click in transactionBtn */
+transactionBtn.addEventListener('click', function () {
+    transactionArea.classList.toggle("active");
+    if (transactionArea.classList.contains('active')) {
+        transactionBtn.innerText = 'Close Transaction';
+    } else {
+        transactionBtn.innerText = 'Open Transaction';
+    }
+})
+
+/* 2. set withdrawBalance inside of localStorage  */
+
+function withdrawMoneyIntoLocalStorage(value) {
+    let getLocalStorage = localStorage.getItem('withdrawArr');
+    if (getLocalStorage == null) {
+        withdrawArr = [];
+    } else {
+        withdrawArr = JSON.parse(getLocalStorage)
+    }
+    withdrawArr.push(value);
+    localStorage.setItem("withdrawArr", JSON.stringify(withdrawArr));
+    showInfoInsideOfTable();
+
+}
+
+/* 3. get withdrawBalance inside of localStorage */
+function showInfoInsideOfTable() {
+    const transactionBody = document.getElementById("transaction-body");
+    let getLocalStorage = localStorage.getItem('withdrawArr');
+    if (getLocalStorage == null) {
+        withdrawArr = [];
+    } else {
+        withdrawArr = JSON.parse(getLocalStorage)
+    }
+    // get account holer name 
+    let accountHolder = localStorage.getItem('username');
+    // get today date 
+    let todayDate = new Date().toLocaleDateString();
+    // insert withdraw value inside of transaction 
+    let withdrawTag = '';
+    withdrawArr.forEach(element => {
+        withdrawTag += `<tr>
+                            <td>${todayDate}</td>
+                            <td>${accountHolder}</td>
+                            <td><span>${element}</span>$</td>
+                            </tr>`;
+
+    });
+    transactionBody.innerHTML = withdrawTag;
+    if(withdrawArr.length === 0){
+        transactionClearBtn.classList.add('disabled');
+    }else{
+        transactionClearBtn.classList.remove('disabled');
+    }
+}
+showInfoInsideOfTable();
+/* Clear All of The Transaction  */
+transactionClearBtn.addEventListener("click", function () {
+    if (confirm("Do you want to remove all of transaction?")) {
+        localStorage.setItem('withdrawArr', '[]');
+        document.getElementById("transaction-body").innerHTML = "";
+        transactionClearBtn.classList.add('disabled');
+
+    }
+})

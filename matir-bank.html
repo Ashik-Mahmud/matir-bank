@@ -22,6 +22,7 @@
                             class="colorize">Matir Bank</span></p>
                 </div>
                 <div class="btns">
+                    <a href="javascript:void(0)" class="transaction-btn">Open Transaction</a>
                     <a href="javascript:void(0)" class="clear-estimate-btn">Clear Estimate</a>
                     <a href="index.html" class="logout-btn">Log Out</a>
                 </div>
@@ -44,6 +45,28 @@
                 <div class="buttons-group">
                     <button id="deposit">Deposit Balance</button>
                     <button id="withdraw">Withdraw Balance</button>
+                </div>
+                <!-- transaction area  -->
+                <div class="transaction">
+                    <div class="transaction-title">
+                        <h3>Transaction</h3>
+                        <button class="clear-transaction-btn">Clear All Transaction</button>
+                    </div>
+                    <div class="transaction-table-area">
+                        <table id="transaction-table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Account Holder</th>
+                                    <th>Withdraw Money</th>
+                                </tr>
+                            </thead>
+                            <tbody id="transaction-body">
+                              
+                              
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
