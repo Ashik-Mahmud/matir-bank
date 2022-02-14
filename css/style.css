@@ -329,6 +329,77 @@ body {
     color: #fff;
 }
 
+
+
+/* transaction area  */
+.transaction {
+    position: relative;
+    margin: 0rem 0rem;
+    transition: all 0.3s ease;
+    max-height: 0px;
+    overflow: hidden;
+}
+
+.transaction.active {
+    margin-top: 2rem;
+    max-height: 600px;
+}
+
+.transaction-table-area {
+    position: relative;
+    max-height: 0px;
+    overflow: hidden;
+    transition: all 0.5s ease;
+}
+
+.transaction.active .transaction-table-area {
+    margin: 0rem 0rem;
+    max-height: 400px;
+    overflow: scroll;
+}
+
+.transaction.active .transaction-table-area::-webkit-scrollbar {
+    width: 0px;
+}
+
+.transaction-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #f8f8f8;
+    padding: .6rem;
+}
+
+.clear-transaction-btn {
+    padding: .5rem;
+    background-color: #e74c3c;
+    border: none;
+    outline: none;
+    color: #fff;
+    font-family: poppins;
+    border-radius: 3px;
+    font-size: .8rem;
+    cursor: pointer;
+}
+
+#transaction-table {
+    width: 100%;
+    text-align: left;
+    margin: 2rem 0rem;
+    border-collapse: collapse;
+}
+
+#transaction-table td,
+#transaction-table th {
+    padding: .5rem;
+    border: 1px solid #f4f4f4;
+}
+
+#transaction-table tr:nth-child(odd) {
+    background-color: #f8f8f8;
+}
+
+
 /* some responsive style  */
 @media (max-width: 900px) {
     .container {
@@ -351,68 +422,21 @@ body {
         grid-template-columns: 1fr;
     }
 
-    .logout-btn {
-        display: none;
+    
+
+    .dashboard-wrapper .dashboard-header {
+        flex-direction: column;
+        padding: .7rem;
+        gap: 1rem;
     }
-}
-
-/* transaction area  */
-.transaction{
-    position: relative;
-    margin: 0rem 0rem;
-    transition: all 0.3s ease;
-    max-height: 0px;
-    overflow: hidden;
-}
-.transaction.active{
-    margin-top: 2rem;
-    max-height: 600px;
-}
-.transaction-table-area{
-    position: relative;
-    max-height: 0px;
-    overflow: hidden;
-    transition: all 0.5s ease;
-}
-.transaction.active .transaction-table-area{
-    margin: 0rem 0rem;
-    max-height: 400px;
-    overflow-y: scroll;
-}
-.transaction.active .transaction-table-area::-webkit-scrollbar{
-    width: 0px;
-}
-
-.transaction-title{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #f8f8f8;
-    padding: .6rem;
-}
-.clear-transaction-btn{
-    padding: .5rem;
-    background-color: #e74c3c;
-    border: none;
-    outline: none;
-    color: #fff;
-    font-family: poppins;
-    border-radius: 3px;
-    font-size: .8rem;
-    cursor: pointer;
-}
-#transaction-table{
-    width: 100%;
-    text-align: left;
-    margin: 2rem 0rem;
-    border-collapse: collapse;
-}
-
-#transaction-table td,
-#transaction-table th{
-    padding: .5rem;
-    border: 1px solid #f4f4f4;
-}
-#transaction-table tr:nth-child(odd){
-    background-color: #f8f8f8;
+    .btns a{
+        margin: .4rem;
+    }
+    .buttons-group button{
+        width: 100%;
+        margin-bottom: .6rem;
+    }
+    .transaction-title{
+        flex-wrap: wrap;
+    }
 }
